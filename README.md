@@ -67,7 +67,7 @@ $ xcodebuild [flags] | tee xcodebuild.log | xcpretty
 - `--report html`, `-r html`: Creates a simple HTML report at `build/reports/tests.html`.
 ![xcpretty html](http://i.imgur.com/0Rnux3v.gif)
 
-- `--report json-compilation-database`, `-r json-compilation-database`: Creates a [JSON compilation database](http://clang.llvm.org/docs/JSONCompilationDatabase.html) at `build/reports/compilation.json`. This is a format to replay single compilations independently of the build system.
+- `--report json-compilation-database`, `-r json-compilation-database`: Creates a [JSON compilation database](http://clang.llvm.org/docs/JSONCompilationDatabase.html) at `build/reports/compilation_db.json`. This is a format to replay single compilations independently of the build system.
 
 Writing a report to a custom path can be specified using `--output PATH`.
 
@@ -76,7 +76,7 @@ Writing a report to a custom path can be specified using `--output PATH`.
 `xcpretty` supports custom formatters through the use of the
 `--formatter` flag, which takes a path to a file as an argument. The
 file must contain a Ruby subclass of `XCPretty::Formatter`, and
-return that class at the end of te file. The class
+return that class at the end of the file. The class
 can override the `format_*` methods to hook into output parsing
 events.
 
