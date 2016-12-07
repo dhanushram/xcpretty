@@ -148,6 +148,10 @@ module XCPretty
         "> #{file_paths.map { |path| path.split('/').last }.join("\n> ")}\n"
     end
 
+    def format_will_not_be_code_signed(message)
+      "#{yellow(warning_symbol + " " + message)}"
+    end
+
 
     private
 
@@ -163,10 +167,10 @@ module XCPretty
 
     def format_failure(f)
       snippet = Snippet.from_filepath(f[:file_path])
+      output = "  #{f[:test_case]}, #{red(f[:reason])}"
+      return output if snippet.contents.empty?
 
-      output = "  #{f[:test_case]}, #{red(f[:reason])}\n  " \
-      "#{cyan(f[:file_path])}\n  ```\n"
-
+      output += "\n  #{cyan(f[:file_path])}\n  ```\n"
       if @colorize
         output += Syntax.highlight(snippet)
       else
@@ -187,3 +191,4 @@ module XCPretty
 
   end
 end
+
